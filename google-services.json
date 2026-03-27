@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "555499531128",
+    "project_id": "hajjcoach-bea0d",
+    "storage_bucket": "hajjcoach-bea0d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555499531128:android:81b134c5d20e52b4a1368d",
+        "android_client_info": {
+          "package_name": "com.neumosoft.hajjcoach"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaup61zsCy686ygz6gk4OSMc0Uj-W5CIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
