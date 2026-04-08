@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hajj Coach – Your AI-Powered Hajj & Umrah Companion</title>
+  <meta name="description" content="Hajj Coach is a mobile app for Muslims preparing for Hajj and Umrah. Step-by-step ritual guides, authentic du'a library, and an AI Coach powered by trusted Islamic scholarly sources." />
+  <meta name="keywords" content="Hajj app, Umrah app, Islamic app, Hajj guide, Umrah guide, Muslim app, dua app, hajj coach, AI Islamic assistant" />
+  <meta property="og:title" content="Hajj Coach – AI-Powered Hajj & Umrah Companion" />
+  <meta property="og:description" content="Step-by-step ritual guides, authentic du'a library, and an AI Coach for every Muslim pilgrim." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #F0D080;
+      --gold-dark: #8B6914;
+      --black: #0D0D0D;
+      --dark: #1A1A1A;
+      --dark2: #242424;
+      --gray: #6B6B6B;
+      --light: #F5F3EE;
+      --white: #FFFFFF;
+      --text: #1A1A1A;
+      --text-muted: #6B6B6B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #E8E4DA;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--black);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 40%);
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title span { color: var(--gold); }
+
+    .hero-desc {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.15);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-stat-number {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    /* Phone mockups */
+    .hero-phones {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 16px;
+      position: relative;
+    }
+
+    .phone-frame {
+      border-radius: 40px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.15);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    }
+
+    .phone-frame.main {
+      width: 220px;
+      transform: translateY(0);
+    }
+
+    .phone-frame.side {
+      width: 180px;
+      transform: translateY(40px);
+      opacity: 0.75;
+    }
+
+    .phone-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* FEATURES */
+    .section {
+      padding: 5rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      background: #F5EDD5;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s;
+    }
+
+    .feature-card:hover { transform: translateY(-2px); }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--black);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* SCREENSHOTS */
+    .screenshots {
+      background: var(--black);
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
+
+    .screenshots-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .screenshots-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .screenshots-header .section-label {
+      background: rgba(201,168,76,0.15);
+      color: var(--gold);
+    }
+
+    .screenshots-header .section-title { color: var(--white); }
+    .screenshots-header .section-desc { color: rgba(255,255,255,0.55); margin: 0 auto; }
+
+    .screenshots-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .screenshot-item {
+      text-align: center;
+    }
+
+    .screenshot-item .phone-frame {
+      width: 200px;
+      margin: 0 auto 1rem;
+    }
+
+    .screenshot-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* HOW IT WORKS */
+    .steps {
+      background: var(--light);
+      padding: 5rem 2rem;
+    }
+
+    .steps-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .step-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--black);
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-arabic {
+      font-size: 28px;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .cta-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .cta-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0A0A0A;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo span { color: var(--gold); }
+
+    .footer-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+      }
+
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-phones { margin-top: 0; }
+      .phone-frame.side { display: none; }
+      .phone-frame.main { width: 240px; }
+
+      nav { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🕋</div>
+      <span>Hajj</span> Coach
+    </a>
+    <a href="https://expo.dev/artifacts/eas/vTGqePuhFBGmVLUKBMnjw9.apk" class="nav-cta" download>Download APK</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge">🌙 Built for the Global Muslim Ummah</div>
+        <h1 class="hero-title">Your AI-Powered <span>Hajj & Umrah</span> Companion</h1>
+        <p class="hero-desc">Hajj Coach guides every pilgrim through sacred rituals with step-by-step guides, an authentic du'a library, and an AI Coach grounded in trusted Islamic scholarship.</p>
+        <div class="hero-actions">
+          <a href="https://expo.dev/artifacts/eas/vTGqePuhFBGmVLUKBMnjw9.apk" class="btn-primary" download>
+            ⬇ Download APK
+          </a>
+          <a href="#features" class="btn-secondary">Explore Features</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-number">10+</div>
+            <div class="hero-stat-label">Ritual Guides</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">26</div>
+            <div class="hero-stat-label">Authentic Du'as</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">AI</div>
+            <div class="hero-stat-label">Islamic Coach</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-phones">
+        <div class="phone-frame side">
+          <img src="https://i.imgur.com/placeholder.png" alt="Guides screen" onerror="this.style.background='#1a1a1a';this.style.minHeight='380px'" />
+        </div>
+        <div class="phone-frame main">
+          <img src="https://i.imgur.com/placeholder.png" alt="Home screen" onerror="this.style.background='#1a1a1a';this.style.minHeight='460px'" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="section-inner">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything a Pilgrim Needs</h2>
+      <p class="section-desc">From first-time pilgrims to seasoned travelers — Hajj Coach has you covered every step of the journey.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <div class="feature-title">AI Islamic Coach</div>
+          <div class="feature-desc">Ask any question about Hajj or Umrah and receive answers grounded in authentic Islamic scholarly sources. Available 24/7, right on your device.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <div class="feature-title">Step-by-Step Ritual Guides</div>
+          <div class="feature-desc">Detailed guides for Tawaf, Sa'i, Ihram rules, Days of Mina, and more — broken down into clear steps for all levels, from beginner to experienced.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤲</div>
+          <div class="feature-title">Authenticated Du'a Library</div>
+          <div class="feature-desc">26 carefully curated du'as across 10 categories, with Arabic text, transliteration, and translations — all sourced from Hadith and Quran.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⏳</div>
+          <div class="feature-title">Hajj Countdown</div>
+          <div class="feature-desc">A live countdown to Hajj Day so you can mentally and spiritually prepare well in advance of your pilgrimage.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <div class="feature-title">Journey Tracker</div>
+          <div class="feature-desc">Track your Hajj and Umrah progress step by step. Know exactly where you are in your journey and what comes next.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">Secure & Private</div>
+          <div class="feature-desc">Your account and spiritual journey data is protected with Firebase authentication and secure cloud storage.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="screenshots" id="screenshots">
+    <div class="screenshots-inner">
+      <div class="screenshots-header">
+        <div class="section-label">App Preview</div>
+        <h2 class="section-title">See It In Action</h2>
+        <p class="section-desc">A beautifully designed app built for every Muslim pilgrim.</p>
+      </div>
+      <div class="screenshots-row">
+        <div class="screenshot-item">
+          <div class="phone-frame">
+            <img src="https://i.imgur.com/placeholder.png" alt="Home Screen" onerror="this.style.background='#2a2a2a';this.style.minHeight='400px';this.alt='Home Screen'" />
+          </div>
+          <div class="screenshot-label">Home & Countdown</div>
+        </div>
+        <div class="screenshot-item">
+          <div class="phone-frame">
+            <img src="https://i.imgur.com/placeholder.png" alt="Guides Screen" onerror="this.style.background='#2a2a2a';this.style.minHeight='400px'" />
+          </div>
+          <div class="screenshot-label">Ritual Guides</div>
+        </div>
+        <div class="screenshot-item">
+          <div class="phone-frame">
+            <img src="https://i.imgur.com/placeholder.png" alt="AI Coach Screen" onerror="this.style.background='#2a2a2a';this.style.minHeight='400px'" />
+          </div>
+          <div class="screenshot-label">AI Coach</div>
+        </div>
+        <div class="screenshot-item">
+          <div class="phone-frame">
+            <img src="https://i.imgur.com/placeholder.png" alt="Duas Screen" onerror="this.style.background='#2a2a2a';this.style.minHeight='400px'" />
+          </div>
+          <div class="screenshot-label">Du'a Library</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="steps" id="how">
+    <div class="steps-inner">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Get Started in Minutes</h2>
+      <p class="section-desc">Simple, intuitive, and designed for every Muslim — regardless of tech experience.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-title">Download the App</div>
+          <div class="step-desc">Download the APK directly to your Android device. No Play Store needed — instant access.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-title">Create Your Account</div>
+          <div class="step-desc">Sign up with your email to save your journey progress, favourite du'as, and personalize your experience.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-title">Choose Your Journey</div>
+          <div class="step-desc">Select Hajj or Umrah and follow the guided steps, browse du'as, or ask the AI Coach any question.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-title">Perform with Confidence</div>
+          <div class="step-desc">Walk into the Haram knowing exactly what to do, what to say, and when — every step of the way.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-arabic">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</div>
+      <h2 class="cta-title">Begin Your Sacred Journey Today</h2>
+      <p class="cta-desc">Download Hajj Coach and carry a knowledgeable companion with you every step of your pilgrimage. Free to download. Built with love for the Ummah.</p>
+      <a href="https://expo.dev/artifacts/eas/vTGqePuhFBGmVLUKBMnjw9.apk" class="btn-primary" download>
+        ⬇ Download APK Free
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><span>Hajj</span> Coach</div>
+    <p class="footer-text">Built for the global Muslim Ummah · Hajj 1447 AH · &copy; 2026 Hajj Coach</p>
+  </footer>
+
+</body>
+</html>
