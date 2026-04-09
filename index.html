@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hajj Coach – AI-Powered Hajj & Umrah Companion App</title>
+  <title>Hajj Coach – AI-Powered Hajj & Umrah Companion</title>
 
   <!-- SEO -->
   <meta name="description" content="Hajj Coach is a free AI-powered mobile app for Muslims preparing for Hajj and Umrah. Step-by-step ritual guides, 26 authentic du'as, and an AI Coach grounded in trusted Islamic scholarship." />
@@ -14,7 +14,7 @@
   <!-- Open Graph (social media preview) -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hajjcoach.vercel.app/" />
-  <meta property="og:title" content="Hajj Coach – AI-Powered Hajj & Umrah Companion App" />
+  <meta property="og:title" content="Hajj Coach – AI-Powered Hajj & Umrah Companion" />
   <meta property="og:description" content="Step-by-step ritual guides, authentic du'a library, and an AI Coach for every Muslim pilgrim. Free to download for Android." />
   <meta property="og:image" content="https://hajjcoach.vercel.app/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -77,20 +77,38 @@
     .nav-link { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-link:hover { color: var(--white); }
 
-    /* Android-style download badge */
+    /* Android download badge */
     .android-dl-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #000; color: #fff;
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 7px 14px; border-radius: 8px;
-      text-decoration: none; transition: opacity 0.2s;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #111; color: #fff;
+      border: 1.5px solid rgba(201,168,76,0.45);
+      padding: 8px 18px 8px 12px; border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
       font-size: 11px; line-height: 1.2;
+      position: relative; overflow: hidden;
     }
-    .android-dl-btn:hover { opacity: 0.8; }
+    .android-dl-btn::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .android-dl-btn:hover {
+      border-color: rgba(201,168,76,0.8);
+      background: #1a1a1a;
+      transform: translateY(-1px);
+    }
+    .android-dl-btn .icon-wrap {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
     .android-dl-btn svg { flex-shrink: 0; }
-    .android-dl-btn .badge-text { display: flex; flex-direction: column; }
-    .android-dl-btn .badge-sub { font-size: 9px; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.04em; }
-    .android-dl-btn .badge-main { font-size: 14px; font-weight: 600; }
+    .android-dl-btn .badge-text { display: flex; flex-direction: column; gap: 1px; }
+    .android-dl-btn .badge-sub { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+    .android-dl-btn .badge-main { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
 
     /* HERO */
     .hero { min-height: 100vh; padding: 100px clamp(1.25rem, 4vw, 3rem) 5rem; display: flex; align-items: center; position: relative; overflow: hidden; }
@@ -215,11 +233,11 @@
   <div class="nav-right">
     <a href="#features" class="nav-link">Features</a>
     <a href="#demo" class="nav-link">Demo</a>
-    <a href="https://expo.dev/artifacts/eas/vTGqePuhFBGmVLUKBMnjw9.apk" class="android-dl-btn" download>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.523 15.341c-.41.733-1.405 2.184-2.354 2.173-.764-.009-1.004-.463-1.875-.463-.873 0-1.14.449-1.877.473-.936.03-1.979-1.505-2.395-2.238C7.58 12.76 7.458 9.977 8.578 8.53c.79-1.032 2.01-1.637 3.163-1.637.867 0 1.563.477 2.168.477.585 0 1.397-.494 2.434-.494.416 0 1.538.07 2.322 1.08-.06.037-1.386.811-1.372 2.419.016 1.922 1.686 2.56 1.698 2.565-.018.056-.265.922-1.468 2.4zM14.5 3.5c.455-.554.852-1.33.717-2.125-.679.046-1.487.452-1.963 1.017-.43.511-.862 1.31-.71 2.07.738.021 1.501-.393 1.956-.962z"/></svg>
+                    <a href="https://expo.dev/artifacts/eas/vTGqePuhFBGmVLUKBMnjw9.apk" class="android-dl-btn" download style="margin: 0 auto; padding: 12px 24px 12px 14px; border-radius: 14px;">
+      <div class="icon-wrap" style="width:48px;height:48px;border-radius:11px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#0D0D0D" xmlns="http://www.w3.org/2000/svg"><path d="M5 20h14v-2H5v2zm7-18v12.17l-3.59-3.58L7 12l5 5 5-5-1.41-1.41L13 14.17V2h-2z"/></svg></div>
       <div class="badge-text">
-        <span class="badge-sub">Download for</span>
-        <span class="badge-main">Android APK</span>
+        <span class="badge-sub">Free &mdash; Download for</span>
+        <span class="badge-main" style="font-size:19px;">Android APK</span>
       </div>
     </a>
   </div>
@@ -236,7 +254,11 @@
       <p class="hero-desc">Hajj Coach guides every pilgrim through sacred rituals with step-by-step guides, an authentic du'a library, and an AI Coach grounded in trusted Islamic scholarship.</p>
       <div class="hero-actions">
         <a href="https://expo.dev/artifacts/eas/vTGqePuhFBGmVLUKBMnjw9.apk" class="android-dl-btn" download style="padding:10px 20px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.523 15.341c-.41.733-1.405 2.184-2.354 2.173-.764-.009-1.004-.463-1.875-.463-.873 0-1.14.449-1.877.473-.936.03-1.979-1.505-2.395-2.238C7.58 12.76 7.458 9.977 8.578 8.53c.79-1.032 2.01-1.637 3.163-1.637.867 0 1.563.477 2.168.477.585 0 1.397-.494 2.434-.494.416 0 1.538.07 2.322 1.08-.06.037-1.386.811-1.372 2.419.016 1.922 1.686 2.56 1.698 2.565-.018.056-.265.922-1.468 2.4zM14.5 3.5c.455-.554.852-1.33.717-2.125-.679.046-1.487.452-1.963 1.017-.43.511-.862 1.31-.71 2.07.738.021 1.501-.393 1.956-.962z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 14.5l-4.5-4.5h3V7h3v5h3L12 16.5zm-5 2.5h10v1H7v-1z"/>
+  <rect x="8.5" y="19.45" width="2" height="2.5" rx="1"/>
+  <rect x="13.5" y="19.45" width="2" height="2.5" rx="1"/>
+</svg>
           <div class="badge-text">
             <span class="badge-sub">Free &mdash; Download for</span>
             <span class="badge-main" style="font-size:16px;">Android APK</span>
@@ -343,7 +365,11 @@
     <h2 class="cta-title">Begin Your Sacred Journey Today</h2>
     <p class="cta-desc">Download Hajj Coach and carry a knowledgeable companion with you every step of your pilgrimage. Free to download. Built with love for the Ummah.</p>
     <a href="https://expo.dev/artifacts/eas/vTGqePuhFBGmVLUKBMnjw9.apk" class="android-dl-btn" download style="margin: 0 auto; padding: 12px 28px; border-radius: 12px;">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.523 15.341c-.41.733-1.405 2.184-2.354 2.173-.764-.009-1.004-.463-1.875-.463-.873 0-1.14.449-1.877.473-.936.03-1.979-1.505-2.395-2.238C7.58 12.76 7.458 9.977 8.578 8.53c.79-1.032 2.01-1.637 3.163-1.637.867 0 1.563.477 2.168.477.585 0 1.397-.494 2.434-.494.416 0 1.538.07 2.322 1.08-.06.037-1.386.811-1.372 2.419.016 1.922 1.686 2.56 1.698 2.565-.018.056-.265.922-1.468 2.4zM14.5 3.5c.455-.554.852-1.33.717-2.125-.679.046-1.487.452-1.963 1.017-.43.511-.862 1.31-.71 2.07.738.021 1.501-.393 1.956-.962z"/></svg>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 14.5l-4.5-4.5h3V7h3v5h3L12 16.5zm-5 2.5h10v1H7v-1z"/>
+  <rect x="8.5" y="19.45" width="2" height="2.5" rx="1"/>
+  <rect x="13.5" y="19.45" width="2" height="2.5" rx="1"/>
+</svg>
       <div class="badge-text">
         <span class="badge-sub">Free &mdash; Download for</span>
         <span class="badge-main" style="font-size:18px;">Android APK</span>
